@@ -16,7 +16,7 @@ public class SudokuSolver {
     SudokuGrid grid;
     
     public SudokuSolver(SudokuGrid grid) {
-        this.grid = new SudokuGrid();
+        this.grid = grid;
         // Initialize the SudokuSolver with the provided SudokuGrid
     }
     
@@ -29,7 +29,9 @@ public class SudokuSolver {
         for (int i=1; i <= 9; i++) {
             if (!grid.givesConflict(p.x, p.y, i)) {
                 grid.fillCell(p.x, p.y, i);
-                solve();
+                if (solve()){
+                    return true;
+                }
             }
             grid.fillCell(p.x, p.y, 0);
         }

@@ -64,9 +64,9 @@ public class SudokuGrid {
                     System.out.print("|");
                 }
                 if ((j+1) % 3 == 0){
-                    System.out.print(grid[i][j]);
+                    System.out.print((grid[i][j] == 0) ? " " : grid[i][j]);
                 } else {
-                    System.out.print(grid[i][j] + " ");
+                    System.out.print((grid[i][j] == 0) ? " " : grid[i][j] + " ");
                 }
             }
             System.out.print("|\n");
