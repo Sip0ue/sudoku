@@ -85,6 +85,11 @@ public class SudokuGrid {
     
     private boolean rowConflict(int r, int d) {
         // Check if there is a conflict in the row r when filling the number d
+        for (int i = 1; i <= DIGIT_RANGE; i++) {
+            if (grid[r][i] == d) {
+                return true;
+            }
+        }
         return false;
     }
     
