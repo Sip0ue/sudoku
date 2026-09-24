@@ -48,6 +48,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>26</maven.compiler.release>
-        <exec.mainClass>com.mycompany.sudoku.Sudoku</exec.mainClass>
+        <exec.mainClass>com.mycompany.sudoku.SudokuSolver</exec.mainClass>
     </properties>
 </project>
