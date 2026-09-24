@@ -44,7 +44,7 @@ public class SudokuGrid {
         Point res = new Point();
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                if (grid[i][j] == 0){
+                if (grid[i][j] == 0) {
                     res.x = i;
                     res.y = j;
                     return res;
@@ -60,13 +60,14 @@ public class SudokuGrid {
                 System.out.println("+-----------------+");
             }
             for (int j = 0; j < SIZE; j++) {
-                if (j % 3 == 0){
+                if (j % 3 == 0) {
                     System.out.print("|");
                 }
-                if ((j+1) % 3 == 0){
+                if ((j + 1) % 3 == 0) {
                     System.out.print((grid[i][j] == 0) ? " " : grid[i][j]);
                 } else {
-                    System.out.print((grid[i][j] == 0) ? " " : grid[i][j] + " ");
+                    System.out.print((grid[i][j] == 0) ? " "
+                            + " " : grid[i][j] + " ");
                 }
             }
             System.out.print("|\n");
@@ -84,7 +85,7 @@ public class SudokuGrid {
     }
     
     private boolean rowConflict(int r, int d) {
-        for (int i = 1; i <= DIGIT_RANGE; i++) {
+        for (int i = 1; i < DIGIT_RANGE; i++) {
             if (grid[r][i] == d) {
                 return true;
             }
@@ -106,7 +107,7 @@ public class SudokuGrid {
         int rowMin;
         int colMax;
         int colMin;
-        if (r < 3){
+        if (r < 3) {
             rowMax = 3;
             rowMin = 0;
         } else if (r < 6) {
@@ -116,7 +117,7 @@ public class SudokuGrid {
             rowMax = 9;
             rowMin = 6;
         }
-        if (c < 3){
+        if (c < 3) {
             colMax = 3;
             colMin = 0;
         } else if (c < 6) {
@@ -126,9 +127,9 @@ public class SudokuGrid {
             colMax = 9;
             colMin = 6;
         }
-        for (int i = rowMin; i < rowMax; i++){
+        for (int i = rowMin; i < rowMax; i++) {
             for (int j = colMin; j < colMax; j++) {
-                if (grid[i][j] == d){
+                if (grid[i][j] == d) {
                     return true;
                 }
             }

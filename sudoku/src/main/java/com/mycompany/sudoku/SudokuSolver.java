@@ -26,10 +26,10 @@ public class SudokuSolver {
         if (p == null) {
             return true;
         }
-        for (int i=1; i <= 9; i++) {
+        for (int i = 1; i <= 9; i++) {
             if (!grid.givesConflict(p.x, p.y, i)) {
                 grid.fillCell(p.x, p.y, i);
-                if (solve()){
+                if (solve()) {
                     return true;
                 }
             }
