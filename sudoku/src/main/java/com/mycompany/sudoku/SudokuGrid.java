@@ -22,30 +22,65 @@ public class SudokuGrid {
     private int cEmpty; // Coordinates of the last found empty cell
     
     public SudokuGrid() {
+        this.grid = new int[SIZE][SIZE];
+        this.rEmpty = -1;
+        this.cEmpty = -1;
         // Initialize the grid and set rEmpty and cEmpty to -1
     }
     
     public SudokuGrid copy() {
-        // Create a copy of the SudokuGrid and return it
-        return null;
+        SudokuGrid copy = new SudokuGrid();
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                copy.grid[i][j] = this.grid[i][j];
+            }
+        }
+        copy.rEmpty = this.rEmpty;
+        copy.cEmpty = this.cEmpty;
+        return copy;
     }
     
     public Point findEmptyCell() {
-        // Find the next empty cell in reading order and return its coordinates as a Point
+        Point res = new Point();
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (grid[i][j] == 0){
+                    res.x = i;
+                    res.y = j;
+                    return res;
+                }
+            }
+        }
         return null;
     }
     
     public void print() {
-        // Print the Sudoku grid
+        for (int i = 0; i < SIZE; i++) {
+            if (i % 3 == 0) {
+                System.out.println("+-----------------+");
+            }
+            for (int j = 0; j < SIZE; j++) {
+                if (j % 3 == 0){
+                    System.out.print("|");
+                }
+                if ((j+1) % 3 == 0){
+                    System.out.print(grid[i][j]);
+                } else {
+                    System.out.print(grid[i][j] + " ");
+                }
+            }
+            System.out.print("|\n");
+        }
+        System.out.println("+-----------------+");
     }
     
     public void fillCell(int r, int c, int d) {
+        grid[r][c] = d;
         // Fill the cell at row r and column c
     }
     
     public boolean givesConflict(int r, int c, int d) {
-        // Check if filling the number d in the cell at row r and column c causes a conflict
-        return false;
+        return rowConflict(r, d) || colConflict(c, d) || boxConflict(r, c, d);
     }
     
     private boolean rowConflict(int r, int d) {
@@ -54,13 +89,46 @@ public class SudokuGrid {
     }
     
     private boolean colConflict(int c, int d) {
-        // Check if there is a conflict in the column c when filling the number d
+        for (int i = 0; i < SIZE; i++) {
+            if (grid[i][c] == d) {
+                return true;
+            } 
+        }
         return false;
     }
     
     private boolean boxConflict(int r, int c, int d) {
-        // Check if there is a conflict in the 3x3 box containing the cell at row r and column c
-        // when filling the number d
+        int rowMax;
+        int rowMin;
+        int colMax;
+        int colMin;
+        if (r < 3){
+            rowMax = 3;
+            rowMin = 0;
+        } else if (r < 6) {
+            rowMax = 6;
+            rowMin = 3;
+        } else {
+            rowMax = 9;
+            rowMin = 6;
+        }
+        if (c < 3){
+            colMax = 3;
+            colMin = 0;
+        } else if (c < 6) {
+            colMax = 6;
+            colMin = 3;
+        } else {
+            colMax = 9;
+            colMin = 6;
+        }
+        for (int i = rowMin; i < rowMax; i++){
+            for (int j = colMin; j < colMax; j++) {
+                if (grid[i][j] == d){
+                    return true;
+                }
+            }
+        }
         return false;
     }
     

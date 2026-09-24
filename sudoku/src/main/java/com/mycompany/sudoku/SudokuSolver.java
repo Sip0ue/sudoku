@@ -29,6 +29,8 @@ public class SudokuSolver {
     
     public static void main(String[] args) {
         // Create a SudokuGrid and a SudokuSolver
+        SudokuGrid test = new SudokuGrid();
+        test.print();
     }
     
 }
